@@ -1,0 +1,93 @@
+/* Checkout.css */
+
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.checkout-container h2 {
+    margin-bottom: 20px;
+}
+
+.payment-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.payment-options button {
+    flex-basis: calc(50% - 10px);
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.payment-options button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.payment-options button:not(.active) {
+    background-color: #e0e0e0;
+}
+
+.payment-options button:hover:not(.active) {
+    background-color: #c0c0c0;
+}
+
+.card-payment-form, .upi-payment-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card-payment-form input, .upi-payment-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.place-order-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.place-order-button:hover {
+    background-color: #388e3c;
+}
+
+
+/* ThankYou.css */
+
+.thank-you-container {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.close-button {
+    margin-top: 20px;
+}

@@ -12,8 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { userLogin } from '../services/AuthService';
+import { getUserDataFromToken, userLogin, isLoggedIn, isAdmin } from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -32,7 +33,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
-    const navigate=useNavigate();
+  const navigate=useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,7 +47,12 @@ export default function Login() {
             //store token in localstorage 
             console.log("token", res.data.token )
             localStorage.setItem("_token",res.data.token);
-            navigate("/dashboard")
+            if( isAdmin() ){
+              navigate("/dashboard")
+            }else{
+              navigate("/products")
+            }
+            
         }
         if(res.data.err==1){
            alert(res.data.msg)

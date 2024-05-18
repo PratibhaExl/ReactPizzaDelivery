@@ -6,4 +6,8 @@ const addProduct=(data)=>{
 const deleteProduct=(product)=>{
     return axios.delete(`${API_URL}/deleteproduct/:${product._id}`)
 }
-export {addProduct, deleteProduct   };
+const updateProduct = (id, data) => {
+    return axios.put(`${API_URL}/updateproduct/${id}`, data);
+}
+  
+export {addProduct, deleteProduct , updateProduct  };
