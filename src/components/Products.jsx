@@ -46,7 +46,7 @@ export default function Products() {
       {products.map((product, index) => (
         <div className="product" key={index}>
           <ProductComponent
-            image={product.imagepath}
+            image={product.imagePath}
             name={product.name}
             price={product.price}
             product={product}
