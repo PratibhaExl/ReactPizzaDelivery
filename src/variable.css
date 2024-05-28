@@ -1,0 +1,48 @@
+
+/* Styling for Add to Cart button */
+.bluebutton {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bluebutton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Styling for Edit button */
+  .yellowbutton {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ffc107;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .yellowbutton:hover {
+    background-color: #e0a800;
+  }
+
+/* Styling for Delete button */
+.redbutton {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #dc3545;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .redbutton:hover {
+    background-color: #c82333;
+  }
