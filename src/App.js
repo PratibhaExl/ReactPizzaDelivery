@@ -13,10 +13,31 @@ import UpdateProduct from './components/UpdateProduct'
 import Checkout from './components/Checkout'
 import ThankYou from './components/ThankYou'
 import MyOrders from './components/MyOrders'
+import { ThemeProvider, createTheme } from '@mui/material/styles'; // Import ThemeProvider and createTheme from Material-UI
+
+// Create a custom theme by overriding the default theme colors
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#e0a800', // Change primary color
+    },
+    secondary: {
+      main: '#61dafb', // Change secondary color
+    },
+    text: {
+        primary: '#ffffff', // Set primary text color to white
+        secondary: '#ffffff', // Set secondary text color to white
+      },
+  
+    // You can override other default colors here
+  },
+});
+
+
 
 export default function App() {
     return (
-        <main>
+        <main > {/* Apply background color */}
             <CartProvider>
                 <Router>
                     <NavBar />
@@ -25,12 +46,12 @@ export default function App() {
                             <Route path='' element={<Login />} />
                             <Route path='signup' element={<Register />} />
                             <Route path="/dashboard" element={
-                                <RouteProtect redirectTo="/">
+                                <RouteProtect redirectTo="/dashboard">
                                     <Dashboard />
                                 </RouteProtect>
                             } />
                             <Route path="/products" element={
-                                <RouteProtect redirectTo="/">
+                                <RouteProtect redirectTo="/products">
                                     <Products />
                                 </RouteProtect>
                             } />

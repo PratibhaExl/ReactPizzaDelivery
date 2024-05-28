@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +14,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getUserDataFromToken, userLogin, isLoggedIn, isAdmin } from '../services/AuthService';
-import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -32,8 +32,16 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
 export default function Login() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  //handle auto login if user already logged in
+  useEffect(()=>{
+    if(isLoggedIn()){
+      navigate('/products');
+    }
+  })
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

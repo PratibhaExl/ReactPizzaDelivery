@@ -29,17 +29,26 @@ export default function Products() {
     navigate(`/updateproduct/${product._id}`, { state: { product } });
   };
 
-  const handleDelete = (product) => {
-    deleteProduct(product)
-      .then(res => {
-        if (res.data.err === 0) {
-          alert(res.data.msg);
-        } else {
-          setErrMsg(res.data.msg);
+  const handleDelete = async (product) => {
+    let id = product._id.toString(); // Convert ObjectId to string
+        console.log("Product ID to delete:", id);
+        alert(`Deleting product with ID: ${id}`);
+
+        try {
+            const res = await deleteProduct(id);
+            if (res.data.err === 0) {
+                alert(res.data.msg);
+                navigate('/products');
+            } else {
+                setErrMsg(res.data.msg);
+            }
+        } catch (err) {
+            console.error("Error deleting product:", err);
+            setErrMsg("An error occurred while deleting the product.");
         }
-      })
-      .catch(err => console.log(err));
-  };
+
+};
+
 
   return (
     <div className="product-row">
