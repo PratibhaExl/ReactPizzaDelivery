@@ -12,6 +12,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import Grid from '@mui/material/Grid';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import { updateProduct } from '../services/ProductService';
 
 const defaultTheme = createTheme();
@@ -34,6 +36,7 @@ export default function UpdateProduct() {
     const [formErrors, setFormErrors] = useState({});
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [shouldValidate, setShouldValidate] = useState(true);
 
     useEffect(() => {
         if (locationState && locationState.product) {
@@ -44,7 +47,8 @@ export default function UpdateProduct() {
     const handler = (event) => {
         const { name, value } = event.target;
         setProductState(prevState => ({ ...prevState, [name]: value }));
-    };
+        setFormErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
+      };
 
     const upload = (event) => {
         if (event.target.files.length > 0) {
@@ -53,6 +57,11 @@ export default function UpdateProduct() {
     };
 
     const validateForm = () => {
+        if (!shouldValidate) {
+            setFormErrors({});
+            return true;
+        }
+
         let errors = {};
         if (!productState.name) errors.name = "Name is required";
         if (!productState.category) errors.category = "Category is required";
@@ -207,6 +216,18 @@ export default function UpdateProduct() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={!shouldValidate}
+                                            onChange={() => setShouldValidate(prev => !prev)}
+                                            color="primary"
+                                        />
+                                    }
+                                    label="Disable Validation"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
                                 <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                                     Update Product
                                 </Button>
@@ -221,10 +242,11 @@ export default function UpdateProduct() {
                     message={snackbarMessage}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                     ContentProps={{
-                        sx: { width: '100vh',
-                        paddingLeft: '5%',
-                        paddingRight: '5%',
-                    }
+                        sx: {
+                            width: '100vh',
+                            paddingLeft: '5%',
+                            paddingRight: '5%',
+                        }
                     }}
                 />
             </Container>
