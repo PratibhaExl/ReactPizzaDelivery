@@ -1,11 +1,11 @@
-// Checkout.jsx
-
 import React, { useEffect, useState } from 'react';
 import './Checkout.css';
 import { useCart } from '../Context/CartContext';
 import { placeOrder } from '../services/OrderService';
 import { getUserDataFromToken } from '../services/AuthService';
 import { useParams, useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const Checkout = ({ }) => {
     const navigate = useNavigate();
@@ -18,6 +18,9 @@ const Checkout = ({ }) => {
     const [cardCvv, setCardCvv] = useState('');
     const [upiId, setUpiId] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
     const user = getUserDataFromToken();
 
     useEffect(() => {
@@ -51,18 +54,26 @@ const Checkout = ({ }) => {
                 const data = response.data;
                 if (data.err === 0) {
                     console.log("orderStatus,", data?.order?.orderStatus)
-                    alert(data.msg);
-                    //clearCart();
-                    navigate('/thankyou', { state: {orderStatus:data.order.orderStatus} })
+                    setSnackbarSeverity('success');
+                    setSnackbarMessage(data.msg);
+                    setOpenSnackbar(true);
+                    setTimeout(() => 
+                        navigate('/thankyou', { state: {orderStatus:data.order.orderStatus} })
+                        , 4000);
+                    
                 } else {
-                    alert(data.msg);
+                    setSnackbarSeverity('error');
+                    setSnackbarMessage(data.msg);
+                    setOpenSnackbar(true);
                 }
             })
             .catch(error => console.error('Error placing order:', error));
 
     };
 
-
+    const handleSnackbarClose = () => {
+        setOpenSnackbar(false);
+    };
 
     const handlePaymentMethodChange = (method) => {
         setErrorMessage("");
@@ -123,8 +134,18 @@ const Checkout = ({ }) => {
 
             <button onClick={handlePlaceOrder} className="place-order-button">Place Order</button>
 
-
-
+            <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleSnackbarClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            ContentProps={{
+              sx: { width: '100vh', paddingLeft: '5%', paddingRight: '5%' }
+            }}
+            >
+                <Alert onClose={handleSnackbarClose} severity={snackbarSeverity}
+                sx= {{ width: '100vh', paddingLeft: '5%', paddingRight: '5%' }}
+                >
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
 
         </div>
     );
