@@ -131,10 +131,15 @@
     color: inherit; /* Use default color for disabled buttons */
 }
 
-
+.approve-button {
+   
+    background-color: #58c75f;
+    color: #fff;
+    
+}
 
 .approve-button:hover {
-    background-color: #388e3c;
+    background-color: #218b26;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .deny-button {

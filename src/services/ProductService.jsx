@@ -10,5 +10,4 @@ const updateProduct = (id, data) => {
     return axios.post(`${API_URL}/update/${id}`, data);
 };
 
-
 export {addProduct, deleteProduct , updateProduct  };

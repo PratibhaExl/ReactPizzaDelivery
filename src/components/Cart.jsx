@@ -50,7 +50,7 @@ const Cart = () => {
               <h3>{item.name}</h3>
               <p>${item.price}</p>
             </div>
-            <button onClick={() => handleRemove(item._id)} className="remove-button">Remove</button>
+            <button onClick={() => handleRemove(item)} className="remove-button">Remove</button>
           </div>
         ))}
       </div>

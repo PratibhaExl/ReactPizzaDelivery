@@ -14,6 +14,9 @@ import Checkout from './components/Checkout'
 import ThankYou from './components/ThankYou'
 import MyOrders from './components/MyOrders'
 import { ThemeProvider, createTheme } from '@mui/material/styles'; // Import ThemeProvider and createTheme from Material-UI
+import Profile from './components/Profile'
+import ChangePassword from './components/ChangePassword'
+
 
 // Create a custom theme by overriding the default theme colors
 const theme = createTheme({
@@ -80,11 +83,23 @@ export default function App() {
                                     <ThankYou />
                                 </RouteProtect>
                             } />
-                            <Route path="/myorders" element={
+                           <Route path="/myorders" element={
                                 <RouteProtect redirectTo="/myorders">
                                     <MyOrders />
                                 </RouteProtect>
                             } />
+<Route path="/profile" element={
+                                <RouteProtect redirectTo="/profile">
+                                    <Profile />
+                                </RouteProtect>
+                            } />
+<Route path="/changepassword" element={
+                                <RouteProtect redirectTo="/changepassword">
+                                    <ChangePassword />
+                                </RouteProtect>
+                            } />
+
+
 
 
                         </Routes>
