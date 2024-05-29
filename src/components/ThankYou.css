@@ -1,0 +1,57 @@
+.thank-you-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    text-align: center;
+    width: 600px;
+    margin-top: 5rem;
+}
+
+.thank-you-heading {
+    color: #4CAF50; /* Green color */
+}
+
+.thank-you-message {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.order-status {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.order-status-value {
+    font-weight: bold;
+    color: #2196F3; /* Blue color */
+}
+
+.close-button {
+    padding: 10px 20px;
+    background-color: #2196F3; /* Blue color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #0b7dda; /* Darker blue color on hover */
+}
+
+.order-more-button {
+    padding: 10px 20px;
+    background-color: #2196F3; /* Blue color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.order-more-button:hover {
+    background-color: #0b7dda; /* Darker blue color on hover */
+}

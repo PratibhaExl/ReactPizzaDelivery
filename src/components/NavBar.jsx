@@ -88,9 +88,10 @@ export default function NavBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
-                <MenuItem onClick={() => navigate("/profile")}> Profile & Edit Profile</MenuItem>
+               
+                <MenuItem onClick={() => navigate("/profile")}> Profile Edit Update</MenuItem>
                 <MenuItem onClick={() => navigate("/changepassword")}>Change Password</MenuItem>
+                <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
               </Menu>
             </>
           )}

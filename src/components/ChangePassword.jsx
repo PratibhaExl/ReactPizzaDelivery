@@ -7,8 +7,14 @@ import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 import { changePassword } from '../services/ProfileService';
 import { getUserDataFromToken, getToken, isAdmin, isLoggedIn } from '../services/AuthService';
+import DefaultUserIcon from '../Images/defaultUserIcon.png'; // replace with actual path to default user icon
+import Avatar from '@mui/material/Avatar';
+import { Stack } from '@mui/material';
 
 const ChangePassword = () => {
+    const user = getUserDataFromToken();
+    const token = getToken();
+    const [profileImage, setProfileImage] = useState( user.profileImage || DefaultUserIcon);
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -16,8 +22,7 @@ const ChangePassword = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const navigate = useNavigate();
-    const user = getUserDataFromToken();
-    const token = getToken();
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -63,6 +68,17 @@ const ChangePassword = () => {
 
     return (
         <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 600, mx: 'auto', mt: 4 }}>
+            
+            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+                <Avatar
+                    alt="Profile Image"
+                    src={profileImage}
+                    sx={{ width: 200, height: 200 }}
+                />
+               
+            </Box>
+            <Stack>{user.fullName}</Stack>
+            
             <TextField
                 label="Current Password"
                 type="password"

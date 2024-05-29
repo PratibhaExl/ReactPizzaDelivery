@@ -116,6 +116,9 @@ const Profile = () => {
             <TextField
                 label="Role"
                 value={role}
+                InputProps={{
+                    readOnly: true,
+                }}
                 onChange={(e) => setRole(e.target.value)}
                 fullWidth
                 margin="normal"
